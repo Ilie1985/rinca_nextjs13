@@ -8,26 +8,20 @@ const HomeHeader = () => {
       <div className="flex  items-center justify-between max-w-6xl mx-4 xl:mx-auto">
         {/* LEFT */}
         <div className="cursor-pointer h-20 w-40 relative lg:inline-grid">
-          <Image
-            src={logo}
-            height="100"
-            className="object-contain "
-          />
+          <Image src={logo} height="100" className="object-contain " />
         </div>
 
         {/* MIDDLE */}
 
-        <div className=" w-[40%] items-center flex-col">
+        <div className=" w-[40%] items-center flex-col ml-[12rem] ">
           <div className="space-x-4">
-            <button className="">
+            <button className="btn">
               Discover <span className="text-green-400">Us</span>
             </button>
 
-            <button className="">
-              Deals 
-            </button>
+            <button className="btn">Deals</button>
 
-            <button className="">
+            <button className="btn">
               About <span className="text-green-400">Us</span>
             </button>
           </div>
@@ -35,10 +29,11 @@ const HomeHeader = () => {
 
         {/* RIGHT */}
 
-<div className="w-[10%]">
-  <button>Sign <span className="text-green-400">In</span></button>
-</div>
-
+        <div className="w-[10%]">
+          <button className="btn">
+            Sign <span className="text-green-400">In</span>
+          </button>
+        </div>
       </div>
     </div>
   );
