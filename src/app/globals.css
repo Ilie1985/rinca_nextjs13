@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @layer components {
+  .bgImage {
+    background-image: url(../images/Rinca\ cover.jpg);
+    
+  }
+  
+} */
