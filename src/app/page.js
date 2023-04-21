@@ -1,6 +1,7 @@
 import React from "react";
 import HomeHeader from "@/components/HomeHeader";
 import Motto from "@/components/Motto";
+import DateSelect from "@/components/DateSelect";
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div  className="">
       <HomeHeader/>
       <Motto/>
+      <DateSelect/>
     </div>
   );
 };
