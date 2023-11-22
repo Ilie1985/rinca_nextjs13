@@ -1,4 +1,5 @@
 import "./globals.css";
+import HomeHeader from "@/components/HomeHeader";
 
 export const metadata = {
   title: "Rinca",
@@ -8,7 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gray-400">{children}</body>
+      <body className="bg-gray-400">
+        <HomeHeader/>
+        {children}</body>
     </html>
   );
 }

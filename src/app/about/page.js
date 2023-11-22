@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-const SignIn = () => {
+const AboutPage = () => {
   return (
     <div>
-      SignIn
+      AboutPage
       <Link href="/" className="ml-2">
         Home
       </Link>
@@ -12,4 +12,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default AboutPage;
