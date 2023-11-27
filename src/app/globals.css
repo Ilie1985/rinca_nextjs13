@@ -7,3 +7,6 @@
     @apply h-7 hover:scale-125 transition-transform duration-200 ease-out cursor-pointer;
   }
 }
+ body{
+  background-color: rgb(206, 234, 224);
+ }
