@@ -1,13 +1,21 @@
 "use client";
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-
-// import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import OAuth from "@/components/OAuth";
+import { db } from "@/firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
+
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -24,8 +32,33 @@ const SignUp = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    try {
+      const auth = getAuth();
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      const user = userCredentials.user;
+
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+
+      router.push("/");
+    } catch (error) {
+      toast.error("Something went wrong with the registration!");
+    }
+    
   };
 
   return (
