@@ -1,13 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
-// import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import OAuth from "@/components/OAuth";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
+ 
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -20,9 +24,26 @@ const SignIn = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-  };
+
+
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      toast.success("Sign in completed");
+      if (userCredential.user) {
+        router.push("/");
+      }
+    } catch (error) {
+      toast.error("Bad user credentials");
+    }
+  }
+  
 
   return (
     <section>
@@ -31,7 +52,7 @@ const SignIn = () => {
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6 ">
           <img
             src="https://images.unsplash.com/flagged/photo-1564767609342-620cb19b2357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80"
-            alt="key-pic"
+            alt="key pic"
             className="w-full rounded-2xl"
           />
         </div>

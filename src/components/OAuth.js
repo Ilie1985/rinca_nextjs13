@@ -15,7 +15,7 @@ const OAuth = () => {
       const auth = getAuth();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log(user);
+      
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
 
@@ -29,7 +29,7 @@ const OAuth = () => {
       router.push("/")
     } catch (error) {
       toast.error("Could not authorize with Google!");
-      console.log("ERROR", error);
+      
     }
   };
 
