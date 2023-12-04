@@ -1,24 +1,26 @@
 "use client";
 import React, { useState } from "react";
-
-
-// import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import OAuth from "@/components/OAuth";
 
 const ForgotPassword = () => {
-
   const [email, setEmail] = useState("");
 
-
-
   const onChange = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Email was sent");
+    } catch (error) {
+      toast.error("Could not send reset password");
+    }
   };
 
   return (
@@ -42,8 +44,6 @@ const ForgotPassword = () => {
               placeholder="Email address"
               className=" mb-6 w-full px-4  py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
             />
-
-            
 
             <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
               <p className="mb-6 ">
