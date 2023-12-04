@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const metadata = {
   title: "Rinca",
   description: "Rinca app created using nextjs 13 ",
+  
 };
 
 export default function RootLayout({ children }) {

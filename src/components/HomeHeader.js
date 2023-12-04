@@ -2,6 +2,8 @@ import React from "react";
 
 import Image from "next/image";
 import logo from "../images/rinca logo.png";
+
+
 import Link from "next/link";
 
 const HomeHeader = () => {
